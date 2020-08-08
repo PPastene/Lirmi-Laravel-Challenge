@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('external');
+})->name('external');
+
+Route::get('/profesores', function() {
+    return view('internal');
+})->name('internal');
