@@ -5,10 +5,12 @@ RUN apt-get update && apt-get install -y \
 
 RUN docker-php-ext-install opcache pdo pdo_pgsql pgsql
 
-WORKDIR /var/www/html
-
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer && \
     chmod +x /usr/local/bin/composer && \
     composer self-update --stable
+
+# NodeJS
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN apt-get install -y nodejs
