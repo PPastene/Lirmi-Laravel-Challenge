@@ -7,7 +7,7 @@
                         <input class="input" type="text" placeholder="Buscar por ID" v-model="inputFindUserById">
                     </div>
                     <div class="control">
-                        <button class="button is-info" v-on:click="userFind">Buscar</button>
+                        <button class="button is-info" v-on:click="findUser">Buscar</button>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                             <td>{{ user.first_name }}</td>
                             <td>{{ user.last_name }}</td>
                             <td>{{ user.email }}</td>
-                            <td><button class="button" v-on:click="mostrarModal(user)">Revisar</button></td>
+                            <td><button class="button" v-on:click="showModal(user)">Revisar</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -38,7 +38,7 @@
         </div>
         <!-- Modal -->
         <div class="modal" v-bind:class="{ 'is-active': modalActive }">
-            <div class="modal-background" v-on:click="ocultarModal()"></div>
+            <div class="modal-background" v-on:click="hideModal()"></div>
             <div class="modal-card">
                 <section class="modal-card-body">
                     <article class="media">
@@ -51,8 +51,8 @@
                     </article>
                 </section>
                 <footer class="modal-card-foot">
-                    <button class="button" v-on:click="registrar">Registrar</button>
-                    <button class="button" v-on:click="ocultarModal">Cancelar</button>
+                    <button class="button" v-on:click="registerUser">Registrar</button>
+                    <button class="button" v-on:click="hideModal">Cancelar</button>
                 </footer>
             </div>
         </div>
@@ -83,14 +83,14 @@ export default {
         }))
     },
     methods: {
-        mostrarModal(user) {
+        showModal(user) {
             this.user = user
             this.modalActive = true
         },
-        ocultarModal(){
+        hideModal(){
             this.modalActive = false
         },
-        registrar() {
+        registerUser() {
             axios.post('/api/profesores/store', {
                 first_name: this.user.first_name,
                 last_name: this.user.last_name,
@@ -103,7 +103,7 @@ export default {
                     alert("Lo sentimos, intente más tarde");
                 });
         },
-        userFind() {
+        findUser() {
             if(this.inputFindUserById != null && this.inputFindUserById > 0 && this.inputFindUserById < 15)
             {
                 const id = this.inputFindUserById

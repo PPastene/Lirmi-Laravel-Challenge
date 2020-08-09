@@ -18,7 +18,7 @@
                             <td>{{ user.first_name }}</td>
                             <td>{{ user.last_name }}</td>
                             <td>{{ user.email }}</td>
-                            <td><button class="button" v-on:click="mostrarModal(user)">Revisar</button></td>
+                            <td><button class="button" v-on:click="showModal(user)">Revisar</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -27,7 +27,7 @@
         </div>
         <!-- Modal -->
         <div class="modal" v-bind:class="{ 'is-active': modalActive }">
-            <div class="modal-background" v-on:click="ocultarModal()"></div>
+            <div class="modal-background" v-on:click="hideModal()"></div>
             <div class="modal-card">
                 <section class="modal-card-body">
                     <article class="media">
@@ -39,8 +39,8 @@
                     </article>
                 </section>
                 <footer class="modal-card-foot">
-                    <button class="button" v-on:click="eliminar(user.id)">Eliminar</button>
-                    <button class="button" v-on:click="ocultarModal()">Cancelar</button>
+                    <button class="button" v-on:click="deleteUser(user.id)">Eliminar</button>
+                    <button class="button" v-on:click="hideModal()">Cancelar</button>
                 </footer>
             </div>
         </div>
@@ -65,12 +65,12 @@ export default {
     },
 
     methods: {
-        mostrarModal(user) {
+        showModal(user) {
             this.user = user
             this.modalActive = true
         },
 
-        ocultarModal(){
+        hideModal(){
             this.modalActive = false
         },
 
@@ -84,7 +84,7 @@ export default {
             })
         },
 
-        eliminar(id) {
+        deleteUser(id) {
             axios.delete("/api/profesores/destroy/"+id)
             .then(response => {
                 this.getData()

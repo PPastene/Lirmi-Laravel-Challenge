@@ -2002,14 +2002,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }));
   },
   methods: {
-    mostrarModal: function mostrarModal(user) {
+    showModal: function showModal(user) {
       this.user = user;
       this.modalActive = true;
     },
-    ocultarModal: function ocultarModal() {
+    hideModal: function hideModal() {
       this.modalActive = false;
     },
-    registrar: function registrar() {
+    registerUser: function registerUser() {
       var _this2 = this;
 
       axios.post('/api/profesores/store', {
@@ -2022,7 +2022,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         alert("Lo sentimos, intente más tarde");
       });
     },
-    userFind: function userFind() {
+    findUser: function findUser() {
       if (this.inputFindUserById != null && this.inputFindUserById > 0 && this.inputFindUserById < 15) {
         var id = this.inputFindUserById;
         var result = this.users.filter(function (user) {
@@ -2117,11 +2117,11 @@ __webpack_require__.r(__webpack_exports__);
     this.getData();
   },
   methods: {
-    mostrarModal: function mostrarModal(user) {
+    showModal: function showModal(user) {
       this.user = user;
       this.modalActive = true;
     },
-    ocultarModal: function ocultarModal() {
+    hideModal: function hideModal() {
       this.modalActive = false;
     },
     getData: function getData() {
@@ -2133,7 +2133,7 @@ __webpack_require__.r(__webpack_exports__);
         alert("Lo sentimos, intente más tarde");
       });
     },
-    eliminar: function eliminar(id) {
+    deleteUser: function deleteUser(id) {
       var _this2 = this;
 
       axios["delete"]("/api/profesores/destroy/" + id).then(function (response) {
@@ -19828,7 +19828,7 @@ var render = function() {
           _c("div", { staticClass: "control" }, [
             _c(
               "button",
-              { staticClass: "button is-info", on: { click: _vm.userFind } },
+              { staticClass: "button is-info", on: { click: _vm.findUser } },
               [_vm._v("Buscar")]
             )
           ])
@@ -19863,7 +19863,7 @@ var render = function() {
                         staticClass: "button",
                         on: {
                           click: function($event) {
-                            return _vm.mostrarModal(user)
+                            return _vm.showModal(user)
                           }
                         }
                       },
@@ -19887,7 +19887,7 @@ var render = function() {
           staticClass: "modal-background",
           on: {
             click: function($event) {
-              return _vm.ocultarModal()
+              return _vm.hideModal()
             }
           }
         }),
@@ -19912,13 +19912,13 @@ var render = function() {
           _c("footer", { staticClass: "modal-card-foot" }, [
             _c(
               "button",
-              { staticClass: "button", on: { click: _vm.registrar } },
+              { staticClass: "button", on: { click: _vm.registerUser } },
               [_vm._v("Registrar")]
             ),
             _vm._v(" "),
             _c(
               "button",
-              { staticClass: "button", on: { click: _vm.ocultarModal } },
+              { staticClass: "button", on: { click: _vm.hideModal } },
               [_vm._v("Cancelar")]
             )
           ])
@@ -19997,7 +19997,7 @@ var render = function() {
                             staticClass: "button",
                             on: {
                               click: function($event) {
-                                return _vm.mostrarModal(user)
+                                return _vm.showModal(user)
                               }
                             }
                           },
@@ -20022,7 +20022,7 @@ var render = function() {
           staticClass: "modal-background",
           on: {
             click: function($event) {
-              return _vm.ocultarModal()
+              return _vm.hideModal()
             }
           }
         }),
@@ -20047,7 +20047,7 @@ var render = function() {
                 staticClass: "button",
                 on: {
                   click: function($event) {
-                    return _vm.eliminar(_vm.user.id)
+                    return _vm.deleteUser(_vm.user.id)
                   }
                 }
               },
@@ -20060,7 +20060,7 @@ var render = function() {
                 staticClass: "button",
                 on: {
                   click: function($event) {
-                    return _vm.ocultarModal()
+                    return _vm.hideModal()
                   }
                 }
               },
