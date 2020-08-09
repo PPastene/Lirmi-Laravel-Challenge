@@ -23,11 +23,12 @@ El sistema hace uso de Nginx como servidor web y PostgreSQL como motor de base d
 - Levantar contenedores con `docker-compose up -d`
 - Entrar al contenedor lirmi_laravel_php con `docker exec -it lirmi_laravel_php bash`
 - Instale las dependencias de PHP con `composer install`
+- Instale las dependencias de Javascript con `npm install`
 - Crear llave de aplicación de Laravel con `php artisan key:generate`
 - Crear tablas de base de datos con `php artisan migrate`
+- Compile los assets de Javascript y CSS con `npm run dev` (puede usar `npm run prod` para compilar a producción)
 - Para hacer pruebas unitarias ejecute `php artisan test`
 
-Si necesita recompilar Javascript o CSS favor de instalar NodeJS y ejecutar `npm run dev` dentro de la carpeta /src
 ## Explicación
 - La decisión de ocupar Nginx como servidor web, PostgreSQL como motor de base de datos y Bulma CSS como framework CSS es para mantener los lineamientos propios del sistema Lirmi.
 - Se crearon rutas de API para separar la carga de las vistas de Blade con la obtención, inserción y eliminación de registros provenientes de los componentes de VueJS.
