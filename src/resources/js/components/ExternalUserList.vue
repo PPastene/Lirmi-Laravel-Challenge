@@ -109,7 +109,7 @@ export default {
                 const id = this.inputFindUserById
                 const result = this.users.filter(function(user){return user.id == id});
                 if(result[0]){
-                    this.mostrarModal(result[0])
+                    this.showModal(result[0])
                 }
                 else {
                     alert("Usuario no encontrado")
