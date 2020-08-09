@@ -14,8 +14,10 @@ services:
             - ./src:/var/www/html/
             - ./nginx/site.conf:/etc/nginx/conf.d/default.conf
         ports:
-            - "80:80"
+            - "8000:80"
             - "443:443"
+        depends_on: 
+            - php
 
     postgres:
         container_name: lirmi_postgresql
@@ -28,12 +30,16 @@ services:
             - 5432:5432
         volumes:
             - pgdata:/var/lib/postgresql/data
+        depends_on: 
+            - php
 
     adminer:
         image: adminer
         container_name: lirmi_adminer
         ports:
-        - "8080:8080"
+            - "8888:8080"
+        depends_on: 
+            - postgres
 
 volumes:
     pgdata:
