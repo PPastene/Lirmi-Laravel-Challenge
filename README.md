@@ -21,19 +21,19 @@ El sistema hace uso de Nginx como servidor web y PostgreSQL como motor de base d
  
 		APP_URL=http://localhost:8000
 
-- En la linea 9 donde está la configuracion de la base de datos reemplazar con lo siguiente
+- En la linea 9 donde está la configuracion de la base de datos reemplazar con lo siguiente 
 
-	    DB_CONNECTION=pgsql
-	    DB_HOST=postgres
-	    DB_PORT=5432
-	    DB_DATABASE=lirmi_exercise
-	    DB_USERNAME=lirmi
-	    DB_PASSWORD=lirmi
+		DB_CONNECTION=pgsql
+		DB_HOST=postgres
+		DB_PORT=5432
+		DB_DATABASE=lirmi_exercise
+		DB_USERNAME=lirmi
+		DB_PASSWORD=lirmi
 
 - Para iniciar los contenedores y el sistema puede ejecutar el archivo `start.bat`. Si desea iniciarlos manualmente ejecute lo siguientes comandos (si no ocupa Docker omita este paso)
 	- `docker-compose up -d` para levantar los contenedores
 	- `docker exec -it lirmi_laravel_php bash` para abrir el terminal dentro del contenedor
-- Instale las dependencias de PHP con `composer install`
+- Instale las dependencias de PHP con `composer install` 
 - Instale las dependencias de Javascript con `npm install`
 - Crear llave de aplicación de Laravel con `php artisan key:generate`
 - Crear tablas de base de datos con `php artisan migrate`
@@ -47,6 +47,7 @@ Si ejecuta Docker, no olvide detener los contenedores con `docker-compose down` 
 
 ## Explicación
 - La decisión de ocupar Nginx como servidor web, PostgreSQL como motor de base de datos y Bulma CSS como framework CSS es para mantener los lineamientos propios del sistema Lirmi.
-- Se crearon rutas de API para separar la carga de las vistas de Blade con la obtención, inserción y eliminación de registros provenientes de los componentes de VueJS.
-- Si bien se decidió por hacer la eliminación de registros en la base de datos de forma fisica por un tema de tiempo, se tenía en consdieración implementar un Soft Delete para evitar la inconsistencia de datos pero debido a que este no era un problema aqui pues no se decidió con implementar aquello.
+- Se usó el middleware de API de Laravel solamente para la obtención, inserción y eliminación de registros de la base de datos, mientras que para la carga de las vistas Blade se ocupa las rutas de Laravel.
+- Se decidió  hacer la eliminación de registros en la base de datos de forma fisica por un tema de tiempo, aunque se tenía en consdieración implementar un Soft Delete para evitar la inconsistencia de datos al borrarse fisicamente, pero debido a que este no era un problema en la propuesta no se decidió con implementar aquello.
 - Montar el sistema bajo el sistema de contenendores permite tener aislado los distintos elementos que componene el sistema del sistema operativo principal además de evitar instalar programas que alteren o perjudiquen su rendimiento, además los contenedores deberían funcionar en otros sistemas operativos sin ningun problema.
+- En un principio se decidió crear un componente para mostrar el Modal con los datos pero debido a que ambos Modal tenian funcionalidades distintas se decidió por crear cada uno dentro de los componentes Vue respectivos
