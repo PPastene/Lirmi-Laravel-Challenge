@@ -75,7 +75,7 @@ export default {
         },
 
         getData() {
-            axios.get("http://localhost/api/profesores")
+            axios.get("/api/profesores")
             .then(result => {
                 this.users = result.data
             })
@@ -85,7 +85,7 @@ export default {
         },
 
         eliminar(id) {
-            axios.delete("http://localhost/api/profesores/destroy/"+id)
+            axios.delete("/api/profesores/destroy/"+id)
             .then(response => {
                 this.getData()
                 this.modalActive = false

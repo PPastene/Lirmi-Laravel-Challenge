@@ -2012,7 +2012,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     registrar: function registrar() {
       var _this2 = this;
 
-      axios.post('http://localhost/api/profesores/store', {
+      axios.post('/api/profesores/store', {
         first_name: this.user.first_name,
         last_name: this.user.last_name,
         email: this.user.email
@@ -2100,7 +2100,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2128,7 +2127,7 @@ __webpack_require__.r(__webpack_exports__);
     getData: function getData() {
       var _this = this;
 
-      axios.get("http://localhost/api/profesores").then(function (result) {
+      axios.get("/api/profesores").then(function (result) {
         _this.users = result.data;
       })["catch"](function () {
         alert("Lo sentimos, intente más tarde");
@@ -2137,7 +2136,7 @@ __webpack_require__.r(__webpack_exports__);
     eliminar: function eliminar(id) {
       var _this2 = this;
 
-      axios["delete"]("http://localhost/api/profesores/destroy/" + id).then(function (response) {
+      axios["delete"]("/api/profesores/destroy/" + id).then(function (response) {
         _this2.getData();
 
         _this2.modalActive = false;
